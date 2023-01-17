@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  next-app:
+    image: mcr.microsoft.com/devcontainers/typescript-node:18
+    network_mode: service:db
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+  db:
+    image: amazon/dynamodb-local
+    container_name: dynamodb
+    hostname: dynamodb
+    restart: unless-stopped
+    volumes:
+      - ./dynamodb-data:/home/dynamodblocal/data
+    ports:
+      - 8000:8000
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
