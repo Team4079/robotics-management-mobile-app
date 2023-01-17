@@ -13,6 +13,13 @@ services:
     restart: unless-stopped
     volumes:
       - ./dynamodb-data:/home/dynamodblocal/data
-    ports:
-      - 8000:8000
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data/"
+  db-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - 8001:8001
+    environment:
+      - AWS_REGION=us-west-1
+      - AWS_ACCESS_KEY_ID=local
+      - AWS_SECRET_ACCESS_KEY=local
+      - DYNAMO_ENDPOINT=http://db:8000

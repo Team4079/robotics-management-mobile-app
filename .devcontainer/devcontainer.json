@@ -20,10 +20,13 @@
     "3000": {
       "label": "Application",
       "onAutoForward": "openPreview"
+    },
+    "8001": {
+      "label": "DynamoDB Admin"
     }
   },
 "forwardPorts": [
-	3000
+	3000, 8001
 ],
 "features": {
 	"ghcr.io/devcontainers/features/aws-cli:1": {},
